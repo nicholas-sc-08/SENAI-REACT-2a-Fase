@@ -7,6 +7,7 @@ import Dias_da_semana from './pages/Dias_da_semana';
 import Lucro from './pages/Lucro';
 import Notas_parciais from './pages/Notas_parciais';
 import Numeros_pares from './pages/Numeros_pares';
+import Comparacao_de_numeros from './pages/Comparacao_de_numeros';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
     <button onClick={() => {set_pagina(<Lucro />)}}>Descontos</button>
     <button onClick={() => {set_pagina(<Notas_parciais/>)}}>Notas Parciais</button>
     <button onClick={() => {set_pagina(<Numeros_pares />)}}>Números Pares</button>
+    <button onClick={() => {set_pagina(<Comparacao_de_numeros/>)}}>Comparação de Números</button>
     </>
   )
 }
