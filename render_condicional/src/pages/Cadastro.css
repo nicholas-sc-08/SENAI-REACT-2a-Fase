@@ -1,0 +1,11 @@
+.aa {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    margin: auto;
+    justify-content: center;
+}
+
+.aa input{
+    margin-bottom: 2%;
+}

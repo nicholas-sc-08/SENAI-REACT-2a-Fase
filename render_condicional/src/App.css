@@ -1,0 +1,8 @@
+.render_container{
+  border: 1px solid #090909;
+  padding: 2%;
+  border-radius: 20px;
+  margin: 2%;
+  text-align: center;
+  box-shadow: 2px 2px 2px 2px;
+}
