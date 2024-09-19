@@ -8,6 +8,8 @@ import Lucro from './pages/Lucro';
 import Notas_parciais from './pages/Notas_parciais';
 import Numeros_pares from './pages/Numeros_pares';
 import Comparacao_de_numeros from './pages/Comparacao_de_numeros';
+import Tarefa_uber from './pages/Tarefa_uber';
+import Enzo_valentina from './pages/Enzo_valentina';
 
 function App() {
 
@@ -25,6 +27,8 @@ function App() {
     <button onClick={() => {set_pagina(<Notas_parciais/>)}}>Notas Parciais</button>
     <button onClick={() => {set_pagina(<Numeros_pares />)}}>Números Pares</button>
     <button onClick={() => {set_pagina(<Comparacao_de_numeros/>)}}>Comparação de Números</button>
+    <button onClick={() => {set_pagina(<Tarefa_uber/>)}}>Tarefa Uber</button>
+    <button onClick={() => {set_pagina(<Enzo_valentina/>)}}>Enzo & Valentina</button>
     </>
   )
 }

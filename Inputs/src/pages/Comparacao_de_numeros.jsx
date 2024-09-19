@@ -10,7 +10,7 @@ function descobrir_numero_maior(){
     
     parseFloat(valor_inpt_um) == parseFloat(valor_inpt_dois) ? set_numero_maior(`Números iguais!`) : 
 
-    parseFloat(valor_inpt_um) > parseFloat(valor_inpt_dois) ? set_numero_maior(`O maior número é o: ${valor_inpt_um}`) : set_numero_maior(`O maior número é o: ${valor_inpt_dois}.`);
+    parseFloat(valor_inpt_um) > parseFloat(valor_inpt_dois) ? set_numero_maior(`O maior número é o: ${valor_inpt_um}.`) : set_numero_maior(`O maior número é o: ${valor_inpt_dois}.`);
 
 };
   return (
