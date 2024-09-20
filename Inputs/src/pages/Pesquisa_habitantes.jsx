@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Pesquisa_habitantes() {
 
+    
     const [array_de_usuarios, set_array_de_usuarios] = useState([]);
     const [array_de_resultados, set_array_de_resultados] = useState([]);
     const [massege_error, set_massege_error] = useState(``);
@@ -15,79 +16,70 @@ export default function Pesquisa_habitantes() {
     let media_das_alturas;
     let soma_das_alturas_mulheres = 0;
     let media_das_alturas_mulheres = 0;
-    let objeto = {
-        id: Date.now(),
-        altura: parseFloat(inpt_altura),
-        genero: inpt_genero
+    
+     useEffect(()=>
+         console.log(`Log bom: `,array_de_usuarios)
+     ,[array_de_usuarios])
+    function armazenar_objetos_em_vetor(){
+        
+        let objeto = {
+            id: Date.now(),
+            altura: parseFloat(inpt_altura),
+            genero: inpt_genero.toUpperCase()
+        };
+        
+        a()
     };
-
-function armazenar_objetos_em_vetor(){
-
-    if(array_de_usuarios.length >= 10) {
-
-        for(let i = 0; i != array_de_usuarios.length; i++){
-
-            if(array_de_usuarios[i].genero.toUpperCase() == `M`){
-
-                soma_de_homens_na_populacao += 1;
+    
+    function a(){
+    
+            set_array_de_usuarios([...array_de_usuarios, objeto]);
+    
+            for(let i = 0; i != array_de_usuarios.length; i++){
+    
+                if(array_de_usuarios[i].altura > altura_maior) {
+    
+                    altura_maior = array_de_usuarios[i].altura;
+                };
             };
-
-        };
-
-        porcentagem_de_homens_na_populacao = array_de_usuarios.length * soma_de_homens_na_populacao / 100;
-
-        for(let i = 0; i != array_de_usuarios.length ; i++){
-
-            if(array_de_usuarios[i].genero.toUpperCase() == `F`){
-
-                soma_das_alturas_mulheres += array_de_usuarios[i].altura;
+    
+            for(let i = 0; i != array_de_usuarios.length;i++){
+    
+                array_de_usuarios[i].genero == `F` ? soma_das_alturas_mulheres += array_de_usuarios[i].genero : soma_de_homens_na_populacao += 1;
+    
             };
-        };
+    
+            for(let i = 0; array_de_usuarios.length ; i++){
+    
+               soma_das_alturas += array_de_usuarios[i].altura;
+            };
+    
+    
+            media_das_alturas = soma_das_alturas / array_de_usuarios.length;
+            media_das_alturas_mulheres = soma_das_alturas_mulheres / array_de_usuarios.length;
+    
+            
+            console.log(altura_maior)
+            console.log(`a`, altura_menor)
+            console.log(`soma`,soma_das_alturas)
+            console.log(`media_mul`, media_das_alturas_mulheres)
+            console.log(`media_das_alt`, media_das_alturas)
+            console.log(array_de_usuarios);
+}
 
-        media_das_alturas_mulheres = soma_das_alturas_mulheres / array_de_usuarios.length;
-        set_massege_error(`Limite de pessoas atingidas! Um total de 10.`);
-
-    } else {
-
-
-    set_array_de_usuarios([...array_de_usuarios, objeto]);
-
-    for(let i = 0; i != array_de_usuarios.length; i++){
-
-        if(array_de_usuarios[i].altura > altura_maior){
-
-            altura_maior = array_de_usuarios[i].altura;
-
-        } else {
-
-            altura_menor = array_de_usuarios[i].altura;
-
-        };
-
-        soma_das_alturas += array_de_usuarios[i].altura;
-
-    };
-
-    media_das_alturas = soma_das_alturas / array_de_usuarios.length;
-
-    exibir_resultado();
-    }
-};
-
-    function exibir_resultado() {
-
+function exibir_resultado() {
+    
         let resultado_objeto = {
-
+            
+            id: Date.now(),
             maior_altura : altura_maior,
             menor_altura : altura_menor,
             media_de_altura : media_das_alturas,
             media_de_altura_mulheres : media_das_alturas_mulheres,
             percentual_de_homens: porcentagem_de_homens_na_populacao
         };
-
-        set_array_de_resultados(...array_de_resultados, resultado_objeto);
-
-
+        
+        set_array_de_resultados([...array_de_resultados, resultado_objeto]);
     };
 
 
@@ -114,9 +106,14 @@ um programa que leia os dados de 10 pessoas e informe:
 
     {massege_error}
 
-    {array_de_usuarios.map((usuario) => (
-        <div key={usuario.id}>
-            <p>{usuario.maior_altura}</p>
+    {array_de_usuarios.map((relatorio) => (
+        <div key={relatorio.id}>
+            <p>Maior Altura encontrada: {relatorio.altura}.</p>
+            <p>Menor Altura encontrada: {relatorio.genero}.</p>
+            <p>Percentual de homens na população: {relatorio.percentual_de_homens}.</p>
+            <p>Media de altura da população: {relatorio.media_de_altura}.</p>
+            <p>Media de altura das mulheres na população: {relatorio.media_de_altura_mulheres}.</p>
+            <p></p>
         </div>
     ))}
     </>
