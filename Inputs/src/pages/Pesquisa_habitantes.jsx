@@ -3,14 +3,25 @@ import { useState } from 'react'
 export default function Pesquisa_habitantes() {
 
     const [array_de_usuarios, set_array_de_usuarios] = useState([]);
+    const [array_de_resultados, set_array_de_resultados] = useState([]);
     const [massege_error, set_massege_error] = useState(``);
     const [inpt_altura, set_inpt_altura] = useState(``);
     const [inpt_genero, set_inpt_genero] = useState(``);
     let porcentagem_de_homens_na_populacao;
     let soma_de_homens_na_populacao = 0;
-function armazenar_objetos_em_vetor(){
+    let altura_maior = 0;
+    let altura_menor = 0;
+    let soma_das_alturas = 0;
+    let media_das_alturas;
     let soma_das_alturas_mulheres = 0;
     let media_das_alturas_mulheres = 0;
+    let objeto = {
+        id: Date.now(),
+        altura: parseFloat(inpt_altura),
+        genero: inpt_genero
+    };
+
+function armazenar_objetos_em_vetor(){
 
     if(array_de_usuarios.length >= 10) {
 
@@ -38,16 +49,6 @@ function armazenar_objetos_em_vetor(){
 
     } else {
 
-     
-    let objeto = {
-        id: Date.now(),
-        altura: parseFloat(inpt_altura),
-        genero: inpt_genero
-    };
-    let altura_maior = 0;
-    let altura_menor = 0;
-    let soma_das_alturas = 0;
-    let media_das_alturas;
 
     set_array_de_usuarios([...array_de_usuarios, objeto]);
 
@@ -69,10 +70,25 @@ function armazenar_objetos_em_vetor(){
 
     media_das_alturas = soma_das_alturas / array_de_usuarios.length;
 
-
-
+    exibir_resultado();
     }
 };
+
+    function exibir_resultado() {
+
+        let resultado_objeto = {
+
+            maior_altura : altura_maior,
+            menor_altura : altura_menor,
+            media_de_altura : media_das_alturas,
+            media_de_altura_mulheres : media_das_alturas_mulheres,
+            percentual_de_homens: porcentagem_de_homens_na_populacao
+        };
+
+        set_array_de_resultados(...array_de_resultados, resultado_objeto);
+
+
+    };
 
 
   return (
@@ -100,8 +116,7 @@ um programa que leia os dados de 10 pessoas e informe:
 
     {array_de_usuarios.map((usuario) => (
         <div key={usuario.id}>
-            <p>{a}</p>
-            <p>{usuario.genero}</p>
+            <p>{usuario.maior_altura}</p>
         </div>
     ))}
     </>
